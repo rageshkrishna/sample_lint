@@ -10,8 +10,8 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-// This should trigger a jshint error
-foo = "123";
+// This should NOT trigger a jshint error
+var foo = "123";
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
