@@ -26,7 +26,7 @@ jobs:
       - TASK:
           script:
             - npm install jshint -g
-            - shipctl get_git_changes --resource sample_lint_repo_pr_only
+            - shipctl get_git_changes --resource=sample_lint_repo_pr_only
             - CHANGES=$(shipctl get_git_changes --resource=sample_lint_repo_pr_only)
             - echo "Here are all the changes - $CHANGES"
             - CHANGED_JS = $(echo "$CHANGES" | grep ".js$")
