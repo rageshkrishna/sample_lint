@@ -1,0 +1,30 @@
+resources:
+  - name: sample_lint_repo_pr_only
+    type: gitRepo
+    versionTemplate:
+      sourceName: rageshkrishna/sample_lint
+      branch: master
+      buildOnPullRequest: true
+      buildOnCommit: false
+
+  - name: sample_lint_repo_commit_only
+    type: gitRepo
+    versionTemplate:
+      sourceName: rageshkrishna/sample_lint
+      branch: master
+      buildOnPullRequest: false
+      buildOnCommit: true
+
+jobs:
+  - name: sample_lint_pr
+    type: runSh
+    steps:
+      - IN: sample_lint_repo_pr_only
+        showBuildStatus: true
+      - TASK:
+          script:
+            - npm install jshint -g
+            - CHANGES=$(shipctl get_git_changes --resource sample_lint_repo_pr_only)
+            - echo "Here are all the changes: $CHANGES"
+            - CHANGED_JS = $(echo "$CHANGES" | grep ".js$")
+            - echo "Here are the changed JS file: $CHANGED_JS"
