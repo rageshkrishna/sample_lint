@@ -29,5 +29,7 @@ jobs:
             - shipctl get_git_changes --resource=sample_lint_repo_pr_only
             - CHANGES=$(shipctl get_git_changes --resource=sample_lint_repo_pr_only)
             - echo "Here are all the changes - $CHANGES"
-            - CHANGED_JS = $(echo "$CHANGES" | grep ".js$")
+            - CHANGED_JS=$(echo "$CHANGES" | grep ".js$")
             - echo "Here are the changed JS file - $CHANGED_JS"
+            - pushd $(shipctl get_resource_state sample_lint_repo_pr_only)
+            - jshint $CHANGED_JS
