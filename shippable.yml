@@ -1,6 +1,7 @@
 resources:
   - name: sample_lint_repo_pr_only
     type: gitRepo
+    integration: github
     versionTemplate:
       sourceName: rageshkrishna/sample_lint
       branch: master
@@ -9,6 +10,7 @@ resources:
 
   - name: sample_lint_repo_commit_only
     type: gitRepo
+    integration: github
     versionTemplate:
       sourceName: rageshkrishna/sample_lint
       branch: master
